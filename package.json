@@ -5,8 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "npx serve . -l 3000",
-    "dev": "npx serve . -l 3000",
-    "build": "echo \"Ranabaali is a static web game ready for Vercel deployment\""
+    "dev": "npx serve . -l 3000"
   },
   "keywords": [
     "ranabaali",
