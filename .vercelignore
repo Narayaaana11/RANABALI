@@ -1,0 +1,11 @@
+# Vercel Deployment Exclusions
+# Exclude heavy local binaries & uncompressed files to keep deploy payload under 15MB
+
+ffmpeg.exe
+yt-dlp.exe
+scratch/
+node_modules/
+.git/
+.gemini/
+*.wav
+*.log

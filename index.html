@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Ranabaali: The Colonial Resistance — Official Vijay Deverakonda Web Game</title>
+    <meta name="description" content="High-octane 2D Action Beat 'Em Up web game based on the movie Ranabaali starring Vijay Deverakonda. Defeat colonial redcoats, reclaim famine grain, and unleash Ranavatharam fury!">
+    
+    <!-- Mobile Web App & Orientation Directives -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="screen-orientation" content="landscape">
+    <meta name="x5-orientation" content="landscape">
+    <meta name="theme-color" content="#0a0504">
+
+    <!-- Fonts & Styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Ramabhadra&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Vercel Web Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+
+    <!-- Vercel Speed Insights -->
+    <script>
+        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+
+    <!-- Telemetry Tracker (Safe Fallback) -->
+    <script>
+        window.trackGameEvent = function(eventName, eventData = {}) {
+            try {
+                if (typeof window.va === 'function') {
+                    window.va('event', { name: eventName, data: eventData });
+                }
+                console.log(`[Vercel Analytics] 📊 ${eventName}`, eventData);
+            } catch (err) {
+                // Failover gracefully
+            }
+        };
+    </script>
+</head>
+<body>
+    <!-- Mobile Portrait Orientation Lock Overlay -->
+    <div id="orientationOverlay" class="orientation-overlay">
+        <div class="orientation-box">
+            <div class="phone-rotate-anim">
+                <div class="phone-device">
+                    <div class="phone-screen-glow"></div>
+                </div>
+                <div class="rotate-arrow-badge">↻</div>
+            </div>
+            <h2 class="orientation-heading">ROTATE YOUR DEVICE</h2>
+            <p class="orientation-telugu">డివైజ్‌ని ల్యాండ్‌స్కేప్ మోడ్‌కి తిప్పండి</p>
+            <p class="orientation-desc">
+                <strong>RANABAALI</strong> is crafted for cinematic 16:9 widescreen combat. Please turn your phone or tablet horizontally into landscape mode to fight!
+            </p>
+            <button id="btnForceLandscape" class="btnLandscape">⛶ ENTER FULLSCREEN LANDSCAPE</button>
+            <p class="orientation-subnote">Or simply rotate your device horizontally</p>
+        </div>
+    </div>
+
+    <div id="gameContainer">
+        <!-- Main Game Viewport -->
+        <canvas id="gameCanvas" width="1280" height="720"></canvas>
+
+        <!-- Top Quick Controls -->
+        <div id="topBar">
+            <button id="muteBtn" class="topBtn" title="Toggle Sound"><span class="topBtnIcon">🔊</span><span class="topBtnText"> AUDIO: ON</span></button>
+            <button id="loadAudioBtn" class="topBtn" title="Load Custom Ranabaali MP3"><span class="topBtnIcon">📁</span><span class="topBtnText"> LOAD MP3</span></button>
+            <button id="controlsBtn" class="topBtn" title="Controls"><span class="topBtnIcon">⌨</span><span class="topBtnText"> CONTROLS</span></button>
+            <button id="pauseBtn" class="topBtn" title="Pause / Menu"><span class="topBtnIcon">⏸</span><span class="topBtnText"> PAUSE</span></button>
+            <button id="fullscreenBtn" class="topBtn" title="Toggle Fullscreen"><span class="topBtnIcon">⛶</span><span class="topBtnText"> FULLSCREEN</span></button>
+            <input type="file" id="audioFileInput" accept="audio/*" style="display:none">
+        </div>
+
+        <!-- Desktop Keyboard Help Bar -->
+        <div id="controlsFooter">
+            <span><span class="keyBadge">A/D</span> MOVE</span>
+            <span><span class="keyBadge">SPACE</span> JUMP</span>
+            <span><span class="keyBadge">J</span> SLASH / DEFLECT</span>
+            <span><span class="keyBadge">K</span> HEAVY CLEAVE</span>
+            <span><span class="keyBadge">L / SHIFT</span> ROLL</span>
+            <span><span class="keyBadge">E</span> JAYAMMA</span>
+            <span><span class="keyBadge">R</span> TACTIC</span>
+            <span><span class="keyBadge">F / I</span> FURY</span>
+            <span><span class="keyBadge">ESC</span> PAUSE</span>
+        </div>
+
+        <!-- Mobile Touch Controls Layer -->
+        <div id="mobileTouchLayer">
+            <!-- Subtle Idle Joystick Hint -->
+            <div id="virtualStickHint">
+                <div class="stickHintRing"></div>
+                <div class="stickHintLabel">TOUCH & DRAG<br>TO MOVE</div>
+            </div>
+
+            <!-- Dynamic Floating Analog Joystick (Appears at touch point) -->
+            <div id="dynamicJoystick">
+                <div id="joystickBase">
+                    <div class="joystickCrossH"></div>
+                    <div class="joystickCrossV"></div>
+                    <div class="joystickInnerRing"></div>
+                </div>
+                <div id="joystickKnob">
+                    <div class="joystickKnobCore"></div>
+                </div>
+            </div>
+
+            <!-- Ergonomic Touch Action Buttons Cluster -->
+            <div id="touchButtons">
+                <div class="tBtnRow specialsRow">
+                    <button id="btnSupport" class="tBtn companionBtn" title="Jayamma Support [E]">
+                        <span class="tIcon">🛡️</span>
+                        <span class="tLabel">JAYAMMA</span>
+                        <span class="tKey">[E]</span>
+                    </button>
+                    <button id="btnTactic" class="tBtn tacticBtn" title="Cycle Tactic [R]">
+                        <span class="tIcon">🔄</span>
+                        <span class="tLabel">TACTIC</span>
+                        <span class="tKey">[R]</span>
+                    </button>
+                    <button id="btnFury" class="tBtn furyBtn" title="Ranavatharam Fury [F]">
+                        <span class="tIcon">🔥</span>
+                        <span class="tLabel">FURY</span>
+                        <span class="tKey">[F]</span>
+                    </button>
+                </div>
+                <div class="tBtnRow combatRow">
+                    <button id="btnRoll" class="tBtn rollBtn" title="Dodge Roll [L]">
+                        <span class="tIcon">💨</span>
+                        <span class="tLabel">ROLL</span>
+                        <span class="tKey">[L]</span>
+                    </button>
+                    <button id="btnJump" class="tBtn jumpBtn" title="Jump [SPACE]">
+                        <span class="tIcon">⬆️</span>
+                        <span class="tLabel">JUMP</span>
+                        <span class="tKey">[SPC]</span>
+                    </button>
+                    <button id="btnHeavy" class="tBtn heavyBtn" title="Heavy Cleave [K]">
+                        <span class="tIcon">⚔️</span>
+                        <span class="tLabel">HEAVY</span>
+                        <span class="tKey">[K]</span>
+                    </button>
+                    <button id="btnAttack" class="tBtn attackBtn mainActionBtn" title="Slash / Deflect [J]">
+                        <span class="tIcon">🗡️</span>
+                        <span class="tLabel">SLASH</span>
+                        <span class="tKey">[J]</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts (Ordered Dependency Architecture) -->
+    <script src="src/engine/assets.js"></script>
+    <script src="src/engine/audio.js"></script>
+    <script src="src/engine/input.js"></script>
+    <script src="src/engine/camera.js"></script>
+    <script src="src/engine/particles.js"></script>
+    <script src="src/entities/player.js"></script>
+    <script src="src/entities/companion.js"></script>
+    <script src="src/entities/enemies.js"></script>
+    <script src="src/entities/boss.js"></script>
+    <script src="src/levels/levels.js"></script>
+    <script src="src/ui/hud.js"></script>
+    <script src="src/ui/cutins.js"></script>
+    <script src="src/ui/menus.js"></script>
+    <script src="src/main.js"></script>
+
+    <!-- UI Event Bindings -->
+    <script>
+        // Audio Toggle
+        const muteBtn = document.getElementById('muteBtn');
+        muteBtn.addEventListener('click', () => {
+            if (window.soundEngine) {
+                window.soundEngine.resume();
+                const isMuted = window.soundEngine.toggleMute();
+                muteBtn.innerHTML = isMuted 
+                    ? '<span class="topBtnIcon">🔇</span><span class="topBtnText"> AUDIO: OFF</span>' 
+                    : '<span class="topBtnIcon">🔊</span><span class="topBtnText"> AUDIO: ON</span>';
+                if (window.trackGameEvent) {
+                    window.trackGameEvent('audio_toggle', { muted: isMuted });
+                }
+            }
+        });
+
+        // Load Custom Audio MP3
+        const loadAudioBtn = document.getElementById('loadAudioBtn');
+        const audioFileInput = document.getElementById('audioFileInput');
+        if (loadAudioBtn && audioFileInput) {
+            loadAudioBtn.addEventListener('click', () => {
+                if (window.soundEngine) window.soundEngine.resume();
+                audioFileInput.click();
+            });
+
+            audioFileInput.addEventListener('change', (e) => {
+                if (e.target.files && e.target.files[0]) {
+                    const file = e.target.files[0];
+                    window.assetManager.loadCustomAudio(file, 'theme', (success) => {
+                        if (success) {
+                            if (window.soundEngine) {
+                                window.soundEngine.stopMusic();
+                                window.soundEngine.startMusic();
+                            }
+                            loadAudioBtn.innerHTML = `<span class="topBtnIcon">🎵</span><span class="topBtnText"> ${file.name.substring(0, 7)}...</span>`;
+                            console.log('Custom Ranabaali audio activated:', file.name);
+                            if (window.trackGameEvent) {
+                                window.trackGameEvent('custom_audio_loaded', { fileName: file.name, fileSize: file.size });
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        // Global User Gesture Unlocking for Chrome & Mobile WebAudio Autoplay Policy
+        const unlockAudio = () => {
+            if (window.soundEngine) window.soundEngine.resume();
+        };
+        window.addEventListener('click', unlockAudio, { passive: true });
+        window.addEventListener('touchstart', unlockAudio, { passive: true });
+        window.addEventListener('keydown', unlockAudio, { passive: true });
+
+        // Controls Screen Modal
+        const controlsBtn = document.getElementById('controlsBtn');
+        controlsBtn.addEventListener('click', () => {
+            if (window.game && window.game.menu) {
+                window.game.menu.setScreen('CONTROLS');
+                if (window.trackGameEvent) window.trackGameEvent('menu_screen_view', { screen: 'CONTROLS' });
+            }
+        });
+
+        // Pause Game Button (Mobile & Header)
+        const pauseBtn = document.getElementById('pauseBtn');
+        if (pauseBtn) {
+            pauseBtn.addEventListener('click', () => {
+                if (window.soundEngine) window.soundEngine.resume();
+                if (window.game) {
+                    if (window.game.gameState === 'PLAYING') {
+                        window.game.gameState = 'PAUSED';
+                        window.game.menu.setScreen('PAUSE');
+                        pauseBtn.innerHTML = '<span class="topBtnIcon">▶</span><span class="topBtnText"> RESUME</span>';
+                        if (window.trackGameEvent) window.trackGameEvent('game_paused');
+                    } else if (window.game.gameState === 'PAUSED') {
+                        window.game.gameState = 'PLAYING';
+                        pauseBtn.innerHTML = '<span class="topBtnIcon">⏸</span><span class="topBtnText"> PAUSE</span>';
+                        if (window.trackGameEvent) window.trackGameEvent('game_resumed');
+                    }
+                }
+            });
+        }
+
+        // Fullscreen Toggle Helper
+        const toggleFullscreen = async () => {
+            if (window.soundEngine) window.soundEngine.resume();
+            try {
+                if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                    const elem = document.documentElement;
+                    if (elem.requestFullscreen) {
+                        await elem.requestFullscreen();
+                    } else if (elem.webkitRequestFullscreen) {
+                        await elem.webkitRequestFullscreen();
+                    }
+                    if (screen.orientation && screen.orientation.lock) {
+                        await screen.orientation.lock('landscape').catch(() => {});
+                    }
+                } else {
+                    if (document.exitFullscreen) {
+                        await document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        await document.webkitExitFullscreen();
+                    }
+                }
+            } catch (err) {
+                console.log('Fullscreen note:', err);
+            }
+        };
+
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        if (fullscreenBtn) {
+            fullscreenBtn.addEventListener('click', toggleFullscreen);
+            document.addEventListener('fullscreenchange', () => {
+                const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+                fullscreenBtn.innerHTML = isFs 
+                    ? '<span class="topBtnIcon">🗗</span><span class="topBtnText"> EXIT FS</span>' 
+                    : '<span class="topBtnIcon">⛶</span><span class="topBtnText"> FULLSCREEN</span>';
+                if (window.game) window.game.resize();
+            });
+        }
+
+        // Orientation Lock Action Button
+        const btnForceLandscape = document.getElementById('btnForceLandscape');
+        if (btnForceLandscape) {
+            btnForceLandscape.addEventListener('click', toggleFullscreen);
+        }
+
+        // Dynamic Orientation & Viewport Detection (Mobile & Tablet)
+        const checkOrientation = () => {
+            const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+            const isPortrait = (window.innerHeight > window.innerWidth) && (isTouch || window.innerWidth <= 1366);
+            const overlay = document.getElementById('orientationOverlay');
+            if (overlay) {
+                overlay.style.display = isPortrait ? 'flex' : 'none';
+            }
+            if (isPortrait) {
+                document.body.classList.add('is-portrait');
+                document.body.classList.remove('is-landscape');
+            } else {
+                document.body.classList.remove('is-portrait');
+                document.body.classList.add('is-landscape');
+            }
+            if (window.game) {
+                window.game.resize();
+            }
+        };
+
+        window.addEventListener('resize', checkOrientation);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(checkOrientation, 80);
+            setTimeout(checkOrientation, 250);
+            setTimeout(checkOrientation, 500);
+        });
+        if (window.screen && window.screen.orientation) {
+            window.screen.orientation.addEventListener('change', () => {
+                setTimeout(checkOrientation, 80);
+                setTimeout(checkOrientation, 250);
+            });
+        }
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', checkOrientation);
+        }
+        if (window.matchMedia) {
+            window.matchMedia('(orientation: portrait)').addEventListener('change', checkOrientation);
+        }
+        checkOrientation();
+
+        // Touch Device Detection
+        const enableTouchMode = () => {
+            document.body.classList.add('is-touch-device');
+        };
+        window.addEventListener('touchstart', enableTouchMode, { once: true, passive: true });
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            enableTouchMode();
+        }
+
+        // Touch Button Virtual Inputs with Haptic Vibration
+        const bindTouchBtn = (id, actionName) => {
+            const btn = document.getElementById(id);
+            if (!btn) return;
+
+            const press = (e) => {
+                e.preventDefault();
+                btn.classList.add('is-pressed');
+                if (window.soundEngine) window.soundEngine.resume();
+                if (window.inputManager) window.inputManager.setVirtualButton(actionName, true);
+                
+                // Subtle mobile haptic feedback
+                if (navigator.vibrate) {
+                    try {
+                        if (actionName === 'fury') navigator.vibrate(35);
+                        else if (actionName === 'heavy') navigator.vibrate(22);
+                        else navigator.vibrate(12);
+                    } catch (err) {}
+                }
+            };
+
+            const release = (e) => {
+                e.preventDefault();
+                btn.classList.remove('is-pressed');
+                if (window.inputManager) window.inputManager.setVirtualButton(actionName, false);
+            };
+
+            btn.addEventListener('touchstart', press, { passive: false });
+            btn.addEventListener('touchend', release, { passive: false });
+            btn.addEventListener('touchcancel', release, { passive: false });
+            btn.addEventListener('mousedown', press);
+            btn.addEventListener('mouseup', release);
+            btn.addEventListener('mouseleave', release);
+        };
+
+        bindTouchBtn('btnAttack', 'attack');
+        bindTouchBtn('btnHeavy', 'heavy');
+        bindTouchBtn('btnRoll', 'roll');
+        bindTouchBtn('btnJump', 'jump');
+        bindTouchBtn('btnSupport', 'support');
+        bindTouchBtn('btnTactic', 'cycle');
+        bindTouchBtn('btnFury', 'fury');
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "ranabaali-game",
+  "version": "1.0.0",
+  "description": "Ranabaali: The Colonial Resistance - 2D Action Beat 'Em Up web game based on the movie Ranabaali starring Vijay Deverakonda",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -l 3000",
+    "dev": "npx serve . -l 3000",
+    "build": "echo \"Ranabaali is a static web game ready for Vercel deployment\""
+  },
+  "keywords": [
+    "ranabaali",
+    "vijay-deverakonda",
+    "web-game",
+    "action-game",
+    "canvas-game"
+  ],
+  "author": "",
+  "license": "MIT"
+}

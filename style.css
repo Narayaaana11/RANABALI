@@ -1,0 +1,758 @@
+/* ==========================================================================
+   Ranabaali: The Colonial Resistance — Premium Game Stylesheet
+   ========================================================================== */
+
+:root {
+    --bg-dark: #0a0504;
+    --primary-red: #c41e1e;
+    --primary-gold: #d4af37;
+    --primary-amber: #ffaa00;
+    --companion-green: #2ecc71;
+    --text-light: #f5ede0;
+    --hud-border: #8b5a2b;
+
+    /* Safe Area Insets for Mobile Notches */
+    --sat: env(safe-area-inset-top, 0px);
+    --sar: env(safe-area-inset-right, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-light);
+    overscroll-behavior: none;
+}
+
+body {
+    touch-action: none;
+}
+
+/* ==========================================================================
+   CINEMATIC MOBILE PORTRAIT ORIENTATION LOCK OVERLAY
+   ========================================================================== */
+
+#orientationOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background: radial-gradient(circle at center, #2e0d08 0%, #120403 70%, #050201 100%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: calc(20px + var(--sat)) calc(24px + var(--sar)) calc(20px + var(--sab)) calc(24px + var(--sal));
+    text-align: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Show automatically when screen is portrait and width is mobile/tablet */
+@media screen and (orientation: portrait) and (max-width: 1400px) {
+    #orientationOverlay {
+        display: flex !important;
+    }
+}
+
+body.is-portrait #orientationOverlay {
+    display: flex !important;
+}
+
+body.is-landscape #orientationOverlay {
+    display: none !important;
+}
+
+.orientation-box {
+    max-width: 380px;
+    background: rgba(22, 11, 9, 0.92);
+    border: 2px solid var(--primary-gold);
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 0 40px rgba(196, 30, 30, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Rotating Phone Animation */
+.phone-rotate-anim {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone-device {
+    width: 42px;
+    height: 72px;
+    border: 2.5px solid var(--primary-gold);
+    border-radius: 8px;
+    background: #150907;
+    position: relative;
+    animation: phoneRotateAnim 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
+}
+
+.phone-screen-glow {
+    position: absolute;
+    inset: 4px;
+    border-radius: 4px;
+    background: radial-gradient(circle, rgba(255, 68, 0, 0.7) 0%, rgba(196, 30, 30, 0.2) 100%);
+}
+
+.rotate-arrow-badge {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    color: #ffffff;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid var(--primary-gold);
+    animation: arrowPulse 2.6s ease-in-out infinite;
+}
+
+@keyframes phoneRotateAnim {
+    0%, 20% {
+        transform: rotate(0deg);
+    }
+    45%, 75% {
+        transform: rotate(90deg);
+    }
+    95%, 100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes arrowPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.orientation-heading {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: #ffea00;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    text-shadow: 0 0 10px rgba(255, 68, 0, 0.8);
+}
+
+.orientation-telugu {
+    font-family: 'Ramabhadra', sans-serif;
+    font-size: 15px;
+    color: var(--primary-gold);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.orientation-desc {
+    font-size: 13px;
+    line-height: 1.45;
+    color: #dfcfc2;
+    margin-bottom: 22px;
+}
+
+.orientation-desc strong {
+    color: #ffaa00;
+}
+
+.btnLandscape {
+    background: linear-gradient(135deg, #c41e1e 0%, #8b0000 100%);
+    border: 2px solid var(--primary-gold);
+    color: #ffffff;
+    padding: 12px 22px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(196, 30, 30, 0.6);
+    transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.btnLandscape:active {
+    transform: scale(0.95);
+    background: #ff3300;
+}
+
+.orientation-subnote {
+    font-size: 11px;
+    color: #a89885;
+    margin-top: 10px;
+    letter-spacing: 0.3px;
+}
+
+/* ==========================================================================
+   GAME CONTAINER & CANVAS
+   ========================================================================== */
+
+#gameContainer {
+    position: relative;
+    width: 100vw;
+    width: 100dvw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #1f0b07 0%, #080302 100%);
+    overflow: hidden;
+    touch-action: none;
+}
+
+#gameCanvas {
+    display: block;
+    background-color: #000000;
+    box-shadow: 0 0 50px rgba(196, 30, 30, 0.25), 0 0 100px rgba(0, 0, 0, 0.9);
+    cursor: crosshair;
+    touch-action: none;
+}
+
+/* ==========================================================================
+   TOP SETTINGS & FULLSCREEN BAR
+   ========================================================================== */
+
+#topBar {
+    position: absolute;
+    top: calc(8px + var(--sat));
+    right: calc(12px + var(--sar));
+    z-index: 100;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.topBtn {
+    background: rgba(25, 12, 10, 0.85);
+    border: 1.5px solid var(--primary-gold);
+    color: var(--primary-gold);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.topBtnIcon {
+    font-size: 13px;
+    line-height: 1;
+}
+
+.topBtnText {
+    display: inline;
+}
+
+.topBtn:hover, .topBtn:active {
+    background: var(--primary-red);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(196, 30, 30, 0.6);
+}
+
+/* ==========================================================================
+   KEYBOARD HELP BAR (DESKTOP ONLY)
+   ========================================================================== */
+
+#controlsFooter {
+    position: absolute;
+    bottom: calc(8px + var(--sab));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 90;
+    display: flex;
+    gap: 14px;
+    background: rgba(15, 8, 6, 0.88);
+    padding: 5px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    font-size: 11px;
+    color: #bfaea0;
+    pointer-events: none;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.keyBadge {
+    display: inline-block;
+    background: #2a1510;
+    border: 1px solid var(--primary-gold);
+    color: var(--primary-gold);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-right: 3px;
+}
+
+/* ==========================================================================
+   MOBILE ON-SCREEN TOUCH CONTROLS
+   ========================================================================== */
+
+#mobileTouchLayer {
+    display: none;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 85;
+    overflow: hidden;
+}
+
+/* Enable touch controls on touch devices or smaller viewports */
+@media (pointer: coarse), (hover: none) {
+    #mobileTouchLayer {
+        display: block;
+    }
+    #controlsFooter {
+        display: none !important;
+    }
+}
+
+body.is-touch-device #mobileTouchLayer {
+    display: block;
+}
+
+body.is-touch-device #controlsFooter {
+    display: none !important;
+}
+
+@media screen and (max-height: 600px), screen and (max-width: 900px) {
+    #controlsFooter {
+        display: none !important;
+    }
+}
+
+/* --- Virtual Joystick Idle Hint (Bottom-Left) --- */
+#virtualStickHint {
+    position: absolute;
+    bottom: calc(22px + var(--sab));
+    left: calc(24px + var(--sal));
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    border: 2px dashed rgba(212, 175, 55, 0.35);
+    background: radial-gradient(circle, rgba(196, 30, 30, 0.08) 0%, transparent 70%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    animation: hintPulse 3s ease-in-out infinite;
+}
+
+.stickHintRing {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(212, 175, 55, 0.4);
+    margin-bottom: 4px;
+}
+
+.stickHintLabel {
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(245, 237, 224, 0.5);
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+@keyframes hintPulse {
+    0%, 100% {
+        border-color: rgba(212, 175, 55, 0.25);
+    }
+    50% {
+        border-color: rgba(212, 175, 55, 0.6);
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    }
+}
+
+/* --- Dynamic Floating Analog Joystick --- */
+#dynamicJoystick {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.12s ease;
+}
+
+#joystickBase {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(50, 18, 12, 0.72) 0%, rgba(15, 6, 4, 0.88) 100%);
+    border: 2px solid var(--primary-gold);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(196, 30, 30, 0.4);
+    pointer-events: none;
+    will-change: transform;
+}
+
+.joystickCrossH {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    right: 10px;
+    height: 1px;
+    background: rgba(212, 175, 55, 0.3);
+    transform: translateY(-50%);
+}
+
+.joystickCrossV {
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+    background: rgba(212, 175, 55, 0.3);
+    transform: translateX(-50%);
+}
+
+.joystickInnerRing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px dashed rgba(212, 175, 55, 0.35);
+}
+
+#joystickKnob {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ff8800 0%, #c41e1e 65%, #550a04 100%);
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 16px rgba(255, 100, 0, 0.85), 0 4px 10px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+    will-change: transform;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.joystickKnobCore {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 8px #ffffff;
+}
+
+/* --- Ergonomic Touch Action Buttons Cluster --- */
+#touchButtons {
+    position: absolute;
+    bottom: calc(14px + var(--sab));
+    right: calc(14px + var(--sar));
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: auto;
+    align-items: flex-end;
+}
+
+.tBtnRow {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.tBtn {
+    border-radius: 50%;
+    background: rgba(35, 18, 14, 0.88);
+    border: 2px solid var(--primary-gold);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.65);
+    touch-action: manipulation;
+    transition: transform 0.08s ease, filter 0.08s ease, background 0.12s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    position: relative;
+}
+
+.tBtn.is-pressed, .tBtn:active {
+    transform: scale(0.88);
+    filter: brightness(1.3);
+    background: var(--primary-red) !important;
+    box-shadow: 0 0 20px rgba(255, 68, 0, 0.8), inset 0 0 10px #ffea00 !important;
+}
+
+.tIcon {
+    font-size: 16px;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.tLabel {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: 0.3px;
+}
+
+.tKey {
+    font-size: 8px;
+    opacity: 0.65;
+    font-weight: 600;
+}
+
+/* Button Sizing & Visual Hierarchy */
+.combatRow .tBtn {
+    width: 58px;
+    height: 58px;
+}
+
+/* Primary Attack Button (Largest, most prominent) */
+.mainActionBtn {
+    width: 68px !important;
+    height: 68px !important;
+    background: linear-gradient(135deg, rgba(80, 20, 10, 0.92) 0%, rgba(196, 30, 30, 0.95) 100%) !important;
+    border: 2.5px solid #ffea00 !important;
+    box-shadow: 0 0 16px rgba(255, 68, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.7) !important;
+}
+
+.mainActionBtn .tIcon {
+    font-size: 20px;
+}
+
+.mainActionBtn .tLabel {
+    font-size: 11px;
+    color: #ffff00;
+}
+
+/* Special Ability Buttons (Top row) */
+.specialsRow .tBtn {
+    width: 52px;
+    height: 52px;
+}
+
+.specialsRow .tIcon {
+    font-size: 14px;
+}
+
+.specialsRow .tLabel {
+    font-size: 9px;
+}
+
+/* Jayamma Companion Button */
+.companionBtn {
+    background: rgba(16, 50, 26, 0.9) !important;
+    border-color: var(--companion-green) !important;
+}
+
+.companionBtn .tLabel {
+    color: #79f2a6;
+}
+
+/* Tactic Cycle Button */
+.tacticBtn {
+    background: rgba(45, 30, 10, 0.9) !important;
+    border-color: var(--primary-amber) !important;
+}
+
+.tacticBtn .tLabel {
+    color: #ffcc66;
+}
+
+/* Ranavatharam Fury Button */
+.furyBtn {
+    background: radial-gradient(circle, #ff3300 0%, #8b0000 100%) !important;
+    border-color: #ffcc00 !important;
+    box-shadow: 0 0 16px rgba(255, 51, 0, 0.75) !important;
+    animation: furyPulse 1.8s infinite alternate ease-in-out;
+}
+
+@keyframes furyPulse {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 51, 0, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 170, 0, 0.9), inset 0 0 10px rgba(255, 255, 0, 0.4);
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS FOR VARIOUS LANDSCAPE SCREENS
+   ========================================================================== */
+
+/* Tablet Landscape (e.g. iPad 1024x768, iPad Pro 1194x834, Galaxy Tab) */
+@media screen and (min-width: 861px) and (min-height: 520px) {
+    .combatRow .tBtn {
+        width: 66px;
+        height: 66px;
+    }
+
+    .mainActionBtn {
+        width: 78px !important;
+        height: 78px !important;
+    }
+
+    .specialsRow .tBtn {
+        width: 58px;
+        height: 58px;
+    }
+
+    .tIcon {
+        font-size: 19px;
+    }
+
+    .tLabel {
+        font-size: 11px;
+    }
+
+    #touchButtons {
+        bottom: calc(22px + var(--sab));
+        right: calc(24px + var(--sar));
+        gap: 12px;
+    }
+
+    .tBtnRow {
+        gap: 12px;
+    }
+
+    #virtualStickHint {
+        width: 116px;
+        height: 116px;
+        bottom: calc(24px + var(--sab));
+        left: calc(30px + var(--sal));
+    }
+
+    .stickHintRing {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Compact Mobile Landscape (height <= 480px or width <= 860px) */
+@media screen and (max-height: 480px), screen and (max-width: 860px) {
+    #topBar {
+        top: calc(4px + var(--sat));
+        right: calc(8px + var(--sar));
+        gap: 5px;
+    }
+
+    .topBtn {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+
+    .topBtnText {
+        display: none;
+    }
+
+    .topBtnIcon {
+        font-size: 14px;
+        margin: 0;
+    }
+}
+
+/* Very Compact Mobile Landscape (height <= 420px) */
+@media screen and (max-height: 420px) {
+    #touchButtons {
+        bottom: calc(8px + var(--sab));
+        right: calc(8px + var(--sar));
+        gap: 5px;
+    }
+
+    .tBtnRow {
+        gap: 5px;
+    }
+
+    .combatRow .tBtn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .mainActionBtn {
+        width: 56px !important;
+        height: 56px !important;
+    }
+
+    .specialsRow .tBtn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .tIcon {
+        font-size: 13px;
+        margin-bottom: 1px;
+    }
+
+    .tLabel {
+        font-size: 8px;
+    }
+
+    .tKey {
+        display: none;
+    }
+
+    #virtualStickHint {
+        bottom: calc(10px + var(--sab));
+        left: calc(12px + var(--sal));
+        width: 84px;
+        height: 84px;
+    }
+
+    .stickHintRing {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+/* Ultra-Wide or Narrow Landscape Widths */
+@media screen and (max-width: 680px) {
+    .topBtn {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+}

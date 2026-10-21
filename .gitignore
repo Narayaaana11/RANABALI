@@ -1,0 +1,14 @@
+# Dependencies & local scratch
+node_modules/
+scratch/
+.gemini/
+
+# Large binaries (not needed in git)
+ffmpeg.exe
+yt-dlp.exe
+
+# Raw uncompressed audio (Game uses compressed .mp3 in assets/audio/)
+*.wav
+
+# Logs
+*.log
