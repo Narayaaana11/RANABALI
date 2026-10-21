@@ -28,6 +28,7 @@ class MenuManager {
     }
 
     setScreen(screen) {
+        this.previousScreen = this.currentScreen;
         this.currentScreen = screen;
         this.selectedOption = 0;
         this.selectedPauseOption = 0;
@@ -271,6 +272,7 @@ class MenuManager {
         ctx.fillText(line, textStartX, lineY);
 
         // Continue Button
+        const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 1024);
         const btnY = frameY + 355;
         ctx.fillStyle = '#c41e1e';
         ctx.fillRect(textStartX, btnY - 24, 250, 44);
@@ -281,7 +283,13 @@ class MenuManager {
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 16px Impact, sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText(this.prologueStep === 2 ? 'ENTER BATTLE [SPACE]' : 'CONTINUE [SPACE]', textStartX + 125, btnY + 5);
+        let continueLabel = '';
+        if (this.prologueStep === 2) {
+            continueLabel = isTouch ? 'ENTER BATTLE' : 'ENTER BATTLE [SPACE]';
+        } else {
+            continueLabel = isTouch ? 'CONTINUE' : 'CONTINUE [SPACE]';
+        }
+        ctx.fillText(continueLabel, textStartX + 125, btnY + 5);
 
         ctx.restore();
     }
@@ -324,15 +332,19 @@ class MenuManager {
         }
 
         // Back button
+        const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 1024);
         ctx.textAlign = 'center';
         ctx.fillStyle = '#c41e1e';
-        ctx.fillRect(width / 2 - 100, height - 90, 200, 42);
+        ctx.fillRect(width / 2 - 120, height - 90, 240, 42);
         ctx.strokeStyle = '#ffd700';
         ctx.lineWidth = 2;
-        ctx.strokeRect(width / 2 - 100, height - 90, 200, 42);
+        ctx.strokeRect(width / 2 - 120, height - 90, 240, 42);
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 16px Impact, sans-serif';
-        ctx.fillText('BACK TO MENU', width / 2, height - 64);
+        const backText = (this.previousScreen === 'PAUSE')
+            ? (isTouch ? 'RETURN TO GAME' : 'RETURN TO GAME [ESC]')
+            : (isTouch ? 'BACK TO MENU' : 'BACK TO MENU [ESC]');
+        ctx.fillText(backText, width / 2, height - 64);
 
         ctx.restore();
     }
@@ -395,6 +407,7 @@ class MenuManager {
         ctx.fillText(`Highest Combo Streak: ${hud.maxCombo} Hits`, width / 2, height / 2 + 5);
 
         // Next Stage Button
+        const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 1024);
         ctx.fillStyle = '#c41e1e';
         ctx.fillRect(width / 2 - 150, height / 2 + 65, 300, 48);
         ctx.strokeStyle = '#ffd700';
@@ -403,7 +416,7 @@ class MenuManager {
 
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 18px Impact, sans-serif';
-        ctx.fillText('PROCEED TO NEXT ACT [ENTER]', width / 2, height / 2 + 96);
+        ctx.fillText(isTouch ? 'PROCEED TO NEXT ACT' : 'PROCEED TO NEXT ACT [ENTER]', width / 2, height / 2 + 96);
 
         ctx.restore();
     }
@@ -424,6 +437,7 @@ class MenuManager {
         ctx.fillText('The colonial forces seized the grain... but the spirit of Rayalaseema will never die.', width / 2, height / 2 - 15);
 
         // Retry Button
+        const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 1024);
         ctx.fillStyle = '#c41e1e';
         ctx.fillRect(width / 2 - 140, height / 2 + 45, 280, 45);
         ctx.strokeStyle = '#ffd700';
@@ -432,7 +446,7 @@ class MenuManager {
 
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 18px Impact, sans-serif';
-        ctx.fillText('RETRY ACT [ENTER]', width / 2, height / 2 + 74);
+        ctx.fillText(isTouch ? 'RETRY ACT' : 'RETRY ACT [ENTER]', width / 2, height / 2 + 74);
 
         ctx.restore();
     }
@@ -462,6 +476,7 @@ class MenuManager {
         ctx.fillText('🏆 ENDLESS RESISTANCE MODE UNLOCKED!', width / 2, height / 2 + 65);
 
         // Return to Menu Button
+        const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 1024);
         ctx.fillStyle = '#c41e1e';
         ctx.fillRect(width / 2 - 140, height / 2 + 105, 280, 45);
         ctx.strokeStyle = '#ffd700';
@@ -470,7 +485,7 @@ class MenuManager {
 
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 18px Impact, sans-serif';
-        ctx.fillText('RETURN TO MENU [ENTER]', width / 2, height / 2 + 134);
+        ctx.fillText(isTouch ? 'RETURN TO MENU' : 'RETURN TO MENU [ENTER]', width / 2, height / 2 + 134);
 
         ctx.restore();
     }

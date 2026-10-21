@@ -74,7 +74,7 @@ class BossHector {
         const hpPct = this.health / this.maxHealth;
         if (hpPct <= 0.33 && this.phase < 3) {
             this.phase = 3;
-            camera.addTrauma(0.5);
+            camera.addTrauma(0.2);
             this.setQuote("Ranabaali! You will bleed on this red soil!");
             particles.addComicText(this.x, this.y - 100, 'HECTOR ENRAGED!', '#ff1100', true);
             sound.playFuryRoar();
@@ -84,7 +84,7 @@ class BossHector {
             }
         } else if (hpPct <= 0.66 && this.phase < 2) {
             this.phase = 2;
-            camera.addTrauma(0.4);
+            camera.addTrauma(0.18);
             this.setQuote("Artillery! Lay waste to these rebel rats!");
             particles.addComicText(this.x, this.y - 100, 'ARTILLERY INBOUND!', '#ff8800', true);
             sound.playExplosion();
@@ -99,7 +99,7 @@ class BossHector {
             this.stateTime = 0;
             this.vx = knockDir * 280;
             this.vy = -260;
-            camera.addTrauma(0.7);
+            camera.addTrauma(0.3);
             this.setQuote("Impossible... the Empire... cannot fall...");
             particles.addComicText(this.x, this.y - 110, 'HECTOR DEFEATED!', '#ffd700', true);
             sound.playExplosion();
@@ -129,7 +129,7 @@ class BossHector {
             if (shell.timer <= 0 && !shell.exploded) {
                 shell.exploded = true;
                 sound.playExplosion();
-                camera.addTrauma(0.55);
+                camera.addTrauma(0.22);
 
                 particles.addShockwave(shell.x, shell.y, 110, '#ff3300', 10);
                 particles.emitHitSplatter(shell.x, shell.y, 1, 24);
@@ -270,7 +270,6 @@ class BossHector {
             if (absDist < 95 && Math.abs(player.y - this.y) < 45) {
                 this.hasHitThisLunge = true;
                 player.takeDamage(this.phase === 3 ? 34 : 24, this.facing, sound, particles, camera);
-                camera.addTrauma(0.35);
             }
         }
 
@@ -327,7 +326,6 @@ class BossHector {
             if (absDist < 110 && Math.abs(player.y - this.y) < 50 && !this.hasHitSpin) {
                 this.hasHitSpin = true;
                 player.takeDamage(28, this.facing, sound, particles, camera);
-                camera.addTrauma(0.4);
             }
         }
 

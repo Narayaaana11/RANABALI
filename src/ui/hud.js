@@ -160,11 +160,12 @@ class HUD {
         }
 
         // Ready Indicator text
+        const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 1024);
         if (player.fury >= player.maxFury && !player.isFuryMode) {
             ctx.fillStyle = Math.sin(performance.now() * 0.01) > 0 ? '#ffea00' : '#ffffff';
             ctx.font = 'bold 11px Impact, sans-serif';
             ctx.textAlign = 'left';
-            ctx.fillText('PRESS [F] / [I] : UGRA RUPAM READY!', barX, furyY + 24);
+            ctx.fillText(isTouch ? 'TAP [FURY] : UGRA RUPAM READY!' : 'PRESS [F] / [I] : UGRA RUPAM READY!', barX, furyY + 24);
         } else if (player.isFuryMode) {
             ctx.fillStyle = '#ff3300';
             ctx.font = 'bold 11px Impact, sans-serif';
@@ -222,6 +223,8 @@ class HUD {
             ctx.restore();
         }
 
+        const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 1024);
+
         // Active Ability Name & Key Hint
         ctx.fillStyle = '#33ff88';
         ctx.font = 'bold 11px sans-serif';
@@ -229,30 +232,49 @@ class HUD {
         ctx.fillText(companion.modeNames[companion.currentMode], iconX, iconY + 38);
         ctx.fillStyle = '#ffcc00';
         ctx.font = 'bold 9px sans-serif';
-        ctx.fillText('[R] CYCLE TACTIC', iconX, iconY + 50);
+        ctx.fillText(isTouch ? 'CYCLE TACTIC' : '[R] CYCLE TACTIC', iconX, iconY + 50);
 
         ctx.fillStyle = '#d4af37';
         ctx.font = 'bold 10px sans-serif';
-        ctx.fillText('[E] SUMMON', iconX, iconY - 32);
+        ctx.fillText(isTouch ? 'TAP TO SUMMON' : '[E] SUMMON', iconX, iconY - 32);
     }
 
     renderObjectives(ctx, levelManager) {
-        const rightX = 1250;
-        const topY = 32;
+        // Positioned cleanly below the topBar buttons (y = 66) to avoid any UI overlap
+        const panelW = 285;
+        const panelH = 74;
+        const panelX = 1280 - panelW - 16;
+        const panelY = 66;
 
+        ctx.save();
+        // Translucent background with warm gold rim
+        ctx.fillStyle = 'rgba(18, 9, 7, 0.82)';
+        ctx.strokeStyle = 'rgba(212, 175, 55, 0.45)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        if (ctx.roundRect) {
+            ctx.roundRect(panelX, panelY, panelW, panelH, 6);
+        } else {
+            ctx.rect(panelX, panelY, panelW, panelH);
+        }
+        ctx.fill();
+        ctx.stroke();
+
+        const rightX = panelX + panelW - 12;
         ctx.textAlign = 'right';
         ctx.fillStyle = '#d4af37';
-        ctx.font = 'bold 16px Georgia, serif';
+        ctx.font = 'bold 14px Georgia, serif';
         const actNames = ['', 'ACT I: SINGANAMALA DEFENSE', 'ACT II: GRAIN TRAIN HEIST', 'ACT III: FORT ST. GEORGE', 'ENDLESS RESISTANCE'];
-        ctx.fillText(actNames[levelManager.currentAct] || 'RESISTANCE', rightX, topY);
+        ctx.fillText(actNames[levelManager.currentAct] || 'RESISTANCE', rightX, panelY + 20);
 
         ctx.fillStyle = '#e0e0e0';
-        ctx.font = 'bold 13px sans-serif';
-        ctx.fillText(`WAVE ${levelManager.currentWave} / ${levelManager.totalWaves}`, rightX, topY + 22);
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText(`WAVE ${levelManager.currentWave} / ${levelManager.totalWaves}`, rightX, panelY + 40);
 
         ctx.fillStyle = '#ffea00';
-        ctx.font = 'bold 14px Impact, sans-serif';
-        ctx.fillText(`🌾 GRAIN LIBERATED: ${levelManager.grainCollected} SACKS`, rightX, topY + 44);
+        ctx.font = 'bold 13px Impact, sans-serif';
+        ctx.fillText(`🌾 GRAIN LIBERATED: ${levelManager.grainCollected} SACKS`, rightX, panelY + 62);
+        ctx.restore();
     }
 
     renderComboCounter(ctx) {
@@ -348,11 +370,34 @@ class HUD {
     }
 
     renderSubtitles(ctx) {
+        // Positioned at y = 595 so it never overlaps the desktop keyboard bar (which is at the bottom y >= 670)
         const sx = 640;
-        const sy = 660;
+        const sy = 595;
 
         ctx.save();
         ctx.font = 'italic bold 20px Georgia, serif';
+        const textWidth = ctx.measureText(this.subtitleText).width;
+
+        // Elegant dark backing pill
+        ctx.fillStyle = 'rgba(12, 6, 5, 0.82)';
+        ctx.strokeStyle = 'rgba(212, 175, 55, 0.45)';
+        ctx.lineWidth = 1;
+        const padX = 22;
+        const padY = 7;
+        const bx = sx - (textWidth / 2) - padX;
+        const by = sy - 20 - padY;
+        const bw = textWidth + padX * 2;
+        const bh = 28 + padY * 2;
+
+        ctx.beginPath();
+        if (ctx.roundRect) {
+            ctx.roundRect(bx, by, bw, bh, 8);
+        } else {
+            ctx.rect(bx, by, bw, bh);
+        }
+        ctx.fill();
+        ctx.stroke();
+
         ctx.textAlign = 'center';
         ctx.lineWidth = 4;
         ctx.strokeStyle = '#000000';

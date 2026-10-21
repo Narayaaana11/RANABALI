@@ -261,7 +261,7 @@ body.is-landscape #orientationOverlay {
     z-index: 100;
     display: flex;
     gap: 8px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
 }
 

@@ -288,8 +288,8 @@ class Player {
         this.furyTimer = this.furyDuration;
         sound.playVijayRoar();
         sound.setTension(2, true);
-        camera.addTrauma(0.7);
-        camera.punchZoom(1.1);
+        camera.addTrauma(0.35);
+        camera.punchZoom(1.035);
 
         if (window.trackGameEvent) {
             window.trackGameEvent('ranavatharam_fury_activated');
@@ -368,7 +368,7 @@ class Player {
         }
 
         if (this.comboIndex === 2) {
-            camera.addTrauma(0.2);
+            camera.addTrauma(0.1);
         }
     }
 
@@ -411,8 +411,8 @@ class Player {
         this.comboIndex = 0;
 
         sound.playHeavyCleave();
-        camera.addTrauma(0.45);
-        camera.punchZoom(1.05);
+        camera.addTrauma(0.2);
+        camera.punchZoom(1.025);
 
         // Big Cleave Hitbox
         const reach = 135;
@@ -453,7 +453,7 @@ class Player {
         bullet.isPlayerOwned = true;
 
         sound.playBulletDeflect();
-        camera.addTrauma(0.35);
+        camera.addTrauma(0.15);
         particles.addHitSparkBurst(bullet.x, bullet.y, 24);
 
         const deflectWords = ['DEFLECT!', 'భళ్ళున!', 'దభ్!'];
@@ -476,7 +476,7 @@ class Player {
         this.comboIndex = 0;
 
         sound.playHitImpact(true);
-        camera.addTrauma(0.35);
+        camera.addTrauma(0.2);
         particles.emitHitSplatter(this.x, this.y - 45, -knockDir, 16);
 
         // Build fury on taking damage

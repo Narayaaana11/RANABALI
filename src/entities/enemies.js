@@ -106,7 +106,7 @@ class Enemy {
             if (isFacingHit) {
                 // Blocked by heavy iron shield!
                 sound.playClash();
-                camera.addTrauma(0.15);
+                camera.addTrauma(0.06);
                 particles.emitSparks(this.x + this.facing * 20, this.y - 45, 14, '#ffffff');
                 particles.addComicText(this.x, this.y - 75, 'BLOCKED!', '#ffffff', false);
                 this.vx = knockDir * 60;
@@ -308,7 +308,6 @@ class Enemy {
                 if (absDist < this.attackRange + 25 && Math.abs(player.y - this.y) < 40) {
                     this.hasDealtDamage = true;
                     player.takeDamage(this.attackDamage, this.facing, sound, particles, camera);
-                    camera.addTrauma(0.3);
                 }
             }
             if (this.stateTime >= 0.55) {

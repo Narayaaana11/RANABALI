@@ -174,7 +174,7 @@ class LevelManager {
             this.lightningTimer -= dt;
             if (this.lightningTimer <= 0) {
                 this.isLightning = true;
-                camera.addTrauma(0.2);
+                camera.addTrauma(0.12);
                 sound.playExplosion();
                 this.lightningTimer = 6.0 + Math.random() * 8.0;
                 setTimeout(() => { this.isLightning = false; }, 90);

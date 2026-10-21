@@ -149,7 +149,12 @@ class Game {
                     this.startAct(1);
                 }
             } else if (screen === 'CONTROLS') {
-                this.menu.setScreen('TITLE');
+                if (this.menu.previousScreen === 'PAUSE' || this.previousGameState === 'PAUSED') {
+                    this.gameState = 'PAUSED';
+                    this.menu.setScreen('PAUSE');
+                } else {
+                    this.menu.setScreen('TITLE');
+                }
             } else if (screen === 'STAGE_CLEAR') {
                 if (this.levelManager.currentAct === 1) {
                     this.startAct(2);
@@ -303,7 +308,7 @@ class Game {
                     }
                 }
             } else {
-                if (window.inputManager.isJustPressed('Space') || window.inputManager.isJustPressed('Enter')) {
+                if (window.inputManager.isJustPressed('Space') || window.inputManager.isJustPressed('Enter') || window.inputManager.isJustPressed('Escape')) {
                     if (window.soundEngine) window.soundEngine.resume();
                     this.handleMenuClick(380, 420);
                 }
@@ -424,7 +429,7 @@ class Game {
                             this.player.hasHitEnemyThisAttack = true;
                             this.player.addFury(h.isHeavy ? 14 : 7);
                             this.hud.addCombo(1);
-                            this.camera.addTrauma(h.isHeavy ? 0.35 : 0.15);
+                            this.camera.addTrauma(h.isHeavy ? 0.12 : 0.05);
 
                             // Apply hit-pause
                             this.freezeFrames = h.isHeavy ? 3 : 1;
@@ -442,7 +447,7 @@ class Game {
                     this.player.hasHitEnemyThisAttack = true;
                     this.player.addFury(h.isHeavy ? 16 : 8);
                     this.hud.addCombo(1);
-                    this.camera.addTrauma(h.isHeavy ? 0.45 : 0.2);
+                    this.camera.addTrauma(h.isHeavy ? 0.18 : 0.08);
                     this.freezeFrames = h.isHeavy ? 4 : 2;
                 }
             }

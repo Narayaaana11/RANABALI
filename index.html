@@ -533,7 +533,14 @@
         // Controls Screen Modal
         const controlsBtn = document.getElementById('controlsBtn');
         controlsBtn.addEventListener('click', () => {
+            if (window.soundEngine) window.soundEngine.resume();
             if (window.game && window.game.menu) {
+                if (window.game.gameState === 'PLAYING') {
+                    window.game.previousGameState = 'PAUSED';
+                    window.game.gameState = 'PAUSED';
+                    const pauseBtnElem = document.getElementById('pauseBtn');
+                    if (pauseBtnElem) pauseBtnElem.innerHTML = '<span class="topBtnIcon">▶</span><span class="topBtnText"> RESUME</span>';
+                }
                 window.game.menu.setScreen('CONTROLS');
                 if (window.trackGameEvent) window.trackGameEvent('menu_screen_view', { screen: 'CONTROLS' });
             }

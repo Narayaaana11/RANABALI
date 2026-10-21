@@ -64,7 +64,7 @@ class JayammaSupport {
         } else if (this.currentMode === 1) {
             // MODE 1: Erra Matti (Blinding Red Soil Throw)
             particles.addComicText(this.x, this.y - 90, 'ERRA MATTI BLIND!', '#ff7733', true);
-            camera.addTrauma(0.3);
+            camera.addTrauma(0.12);
 
             // Stun all nearby enemies within 350px
             for (const enemy of enemies) {
@@ -81,7 +81,7 @@ class JayammaSupport {
         } else if (this.currentMode === 2) {
             // MODE 2: Villager Charge
             particles.addComicText(this.x, this.y - 90, 'VILLAGERS RALLY!', '#ffcc00', true);
-            camera.addTrauma(0.4);
+            camera.addTrauma(0.15);
 
             // Spawn 3 charging villagers
             this.villagers = [
