@@ -1,0 +1,40 @@
+{
+  "name": "Ranabaali: The Colonial Resistance",
+  "short_name": "Ranabaali",
+  "description": "High-octane 2D Action Beat 'Em Up web game based on the movie Ranabaali starring Vijay Deverakonda. Defeat colonial redcoats, reclaim famine grain, and unleash Ranavatharam fury!",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0a0504",
+  "theme_color": "#0a0504",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": [
+    "games",
+    "action",
+    "entertainment"
+  ],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/assets/images/ranabaali.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/images/ranabaali_logo.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Ranabaali 1876 Colonial Resistance Game"
+    }
+  ]
+}

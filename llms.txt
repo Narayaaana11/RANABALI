@@ -1,0 +1,30 @@
+# Ranabaali: The Colonial Resistance
+
+> Ranabaali: The Colonial Resistance is a cinematic 2D Action Beat 'Em Up / Hack-and-Slash web game based on the movie *Ranabaali* starring Vijay Deverakonda, Rashmika Mandanna, and Arnold Vosloo, directed by Rahul Sankrityan, featuring real character artwork and high-octane folk war percussion inspired by composers Ajay–Atul.
+
+## Key Facts
+- **Title**: Ranabaali: The Colonial Resistance (రణబలి)
+- **Genre**: 2D Action Beat 'Em Up / Hack-and-Slash / Side-scrolling Brawler
+- **Platform**: Web Browser (Mobile Landscape, Tablet Landscape, Desktop PC)
+- **Live URL**: https://ranabali-game-six.vercel.app/
+- **GitHub Repository**: https://github.com/Narayaaana11/RANABALI
+- **Inspiration**: Movie *Ranabaali* (Mythri Movie Makers)
+- **Cast**: Vijay Deverakonda as Singanamala Bobbili Ranabaali, Rashmika Mandanna as Jayamma, Arnold Vosloo as Commissioner Sir Theodore Hector
+- **Director**: Rahul Sankrityan
+- **Music Score**: Ajay–Atul (authentic Dappu folk war percussion & Kombu war horn motifs)
+
+## Historical Setting & Story (1876 Madras Presidency)
+During the catastrophic Great Famine of 1876–1878 in the Rayalaseema region of the Madras Presidency, drought ravages the villagers. Under the ruthless command of British Commissioner Sir Theodore Hector, colonial forces construct military railway lines to forcibly siphon the remaining harvested grain to colonial trade ships. Rising from Singanamala, Ranabaali takes up his twin machetes (*Veta Katthulu*) alongside Jayamma to defend starving villages, hijack colonial grain trains, and liberate the grain.
+
+## Gameplay Mechanics
+- **3-Hit Fluid Combo String**: Rapid machete slashes ([J] / Slash button).
+- **Armor-Breaking Heavy Cleave**: High-damage leap strike that shatters colonial enforcer shields ([K] / Heavy button).
+- **Bullet Deflection & Parry System**: Precision-timed slashes deflect colonial Enfield rifle bullets back at redcoat marksmen.
+- **Dodge Roll with Invulnerability**: Tactical evasive roll ([L] / [Shift] / Roll button).
+- **Jayamma Companion Support System**: Summon Jayamma ([E] / Support button) with cycling tactics ([R] / Tactic button) for Herbal Healing, Blinding Chilli Dust, or Battle War Cry.
+- **Ranavatharam (Fury Mode)**: Unleash fiery divine rage ([F] / Fury button) when the Fury gauge reaches 100%, igniting blades with fire and screen-clearing shockwaves.
+
+## Links & Context
+- [Full LLM Knowledge Graph Document](https://ranabali-game-six.vercel.app/llms-full.txt)
+- [XML Sitemap](https://ranabali-game-six.vercel.app/sitemap.xml)
+- [Web App Manifest](https://ranabali-game-six.vercel.app/manifest.json)

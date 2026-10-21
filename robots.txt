@@ -1,0 +1,63 @@
+# ==============================================================================
+# Ranabaali: The Colonial Resistance — robots.txt
+# Full SEO, AEO & GEO Directive File for Search Engines & Generative AI Crawlers
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Disallow: /scratch/
+Disallow: /node_modules/
+
+# --- Major Search Engine Crawlers ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# --- Generative Engine Optimization (GEO) & AI Answer Engines ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# --- Discovery Sitemaps & LLM Context ---
+Sitemap: https://ranabali-game-six.vercel.app/sitemap.xml
+# Generative AI Agent Context Standard:
+# See: https://ranabali-game-six.vercel.app/llms.txt
+# See: https://ranabali-game-six.vercel.app/llms-full.txt
+

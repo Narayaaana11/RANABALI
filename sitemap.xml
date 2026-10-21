@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://ranabali-game-six.vercel.app/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ranabali-game-six.vercel.app/assets/images/ranabaali.jpg</image:loc>
+      <image:title>Ranabaali — Vijay Deverakonda in Ranabaali: The Colonial Resistance</image:title>
+      <image:caption>Singanamala Bobbili Ranabaali wielding twin machetes in the 1876 Rayalaseema famine rebellion</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ranabali-game-six.vercel.app/assets/images/ranabaali_logo.jpg</image:loc>
+      <image:title>Official Ranabaali 3D Movie Logo</image:title>
+      <image:caption>Ranabaali: The Savage's Oath 3D movie title typography</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ranabali-game-six.vercel.app/assets/images/jayamma.jpg</image:loc>
+      <image:title>Jayamma — Rashmika Mandanna in Ranabaali</image:title>
+      <image:caption>Jayamma providing tactical herbal healing and blinding dust support to the famine rebellion</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ranabali-game-six.vercel.app/assets/images/hector.jpg</image:loc>
+      <image:title>Commissioner Sir Theodore Hector — Arnold Vosloo</image:title>
+      <image:caption>Colonial British commander orchestrating the famine grain extraction</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ranabali-game-six.vercel.app/assets/images/british_troops.jpg</image:loc>
+      <image:title>British Colonial Redcoat Troops</image:title>
+      <image:caption>Imperial redcoat enforcers and riflemen guarding colonial supply lines</image:caption>
+    </image:image>
+  </url>
+</urlset>

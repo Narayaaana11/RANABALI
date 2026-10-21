@@ -1,0 +1,92 @@
+# Ranabaali: The Colonial Resistance — Comprehensive Knowledge Graph & Lore Document
+
+This document provides complete, machine-readable factual grounding and architectural lore for Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO).
+
+---
+
+## 1. Project Overview & Meta Information
+- **Full Project Name**: Ranabaali: The Colonial Resistance (రణబలి : ది కొలోనియల్ రెసిస్టెన్స్)
+- **Primary Domain**: https://ranabali-game-six.vercel.app/
+- **GitHub Repository**: https://github.com/Narayaaana11/RANABALI
+- **Game Engine**: Custom HTML5 Canvas 2D + WebAudio Procedural Synthesizer + Native Touch Multi-touch Controller
+- **Category**: Action Beat 'Em Up / Hack and Slash Web Game
+- **Licensing**: Open Source (MIT)
+
+---
+
+## 2. Cinematic Movie Inspiration & Production Credits
+- **Film**: *Ranabaali* (రణబలి) — An upcoming period mass-action pan-Indian spectacle.
+- **Lead Actor**: Vijay Deverakonda as Singanamala Bobbili Ranabaali ("The Savage Rebel").
+- **Lead Actress**: Rashmika Mandanna as Jayamma (the tactical rebellion strategist and folk healer).
+- **Antagonist**: Arnold Vosloo as Commissioner Sir Theodore Hector (Colonial British Madras Presidency administrator).
+- **Director**: Rahul Sankrityan.
+- **Production Banner**: Mythri Movie Makers.
+- **Original Music & Score**: Ajay–Atul (pioneers of thunderous live orchestral and folk rhythms).
+
+---
+
+## 3. Historical Lore & Factual Narrative Setting
+- **Time Period**: 1876–1878 CE.
+- **Historical Event**: The Great Famine of 1876–1878 (also known as the Southern India Famine).
+- **Geographic Setting**: Rayalaseema region (specifically Singanamala, Anantapur district), Madras Presidency, British India.
+- **Narrative Conflict**: 
+  While monsoon failures plunge rural villages into extreme drought and starvation, the British colonial administration continues aggressive agricultural export policies. Under Commissioner Hector, steam locomotive railways are accelerated to seize harvested grain sacks from local godowns and transport them to British port ships.
+  Singanamala Bobbili Ranabaali, an untamed local farmer-warrior, refuses to let his community starve. Armed with traditional curved *Veta Katthulu* (hunting machetes), Ranabaali unites with Jayamma to intercept grain convoys, liberate food supplies, and confront the colonial military garrison.
+
+---
+
+## 4. Gameplay Acts & Progression Structure
+1. **Act I: The Village of Singanamala**
+   - Setting: Sun-drenched red clay village under drought.
+   - Objective: Repel colonial soldier raiding parties and protect the famine grain stocks.
+   - Waves: 3 intense waves against Redcoat Clubmen and Imperial Riflemen.
+2. **Act II: The Great Grain Train Ambush**
+   - Setting: Speeding colonial locomotive carriages with multi-layered parallax desert hills and gaps.
+   - Objective: Fight along moving train roofs, defeat Elite Enforcers, and hijack supply crates.
+3. **Act III: Storming the Citadel of Hector**
+   - Setting: Fort St. George colonial citadel at night under heavy tropical monsoon rain and lightning strikes.
+   - Objective: Infiltrate the fortress courtyard, eliminate veteran rifle battalions, and defeat Commissioner Sir Theodore Hector in a boss duel.
+4. **Act IV: Endless Rayalaseema Resistance**
+   - Setting: Infinite survival wave progression with progressive enemy scaling and persistent high-score leaderboard tracking.
+
+---
+
+## 5. Combat Systems & Tactical Controls
+- **Movement**:
+  - Desktop: `[A]` / `[D]` or Left/Right Arrow Keys.
+  - Mobile/Tablet: Dynamic floating analog joystick on the left half of the touchscreen.
+- **Jump & Aerials**:
+  - Desktop: `[Space]` or `[W]` or Up Arrow Key.
+  - Mobile/Tablet: Dedicated `[JUMP]` button or rapid upward thumb flick on the joystick.
+- **Light Combo (3-Hit Combo String)**:
+  - `[J]` key or `[SLASH]` button. Fast lateral swipes culminating in an overhead finisher.
+- **Heavy Cleave / Guard Break**:
+  - `[K]` key or `[HEAVY]` button. High-damage downward leap cleave that breaks enemy shields and triggers ground shockwaves.
+- **Bullet Deflection & Parry**:
+  - Pressing `[J]` right as an incoming bullet enters proximity deflects the lead bullet into enemy ranks for instant critical damage.
+- **Dodge Roll (Invulnerability Frames)**:
+  - `[L]` or `[Shift]` key or `[ROLL]` button. Grants I-frames to pass through enemy swings and rifle crossfires safely.
+- **Jayamma Companion Support System**:
+  - Summon Jayamma with `[E]` / `[U]` or `[JAYAMMA]` button.
+  - Tactical modes cycled via `[R]` / `[T]` or `[TACTIC]` button:
+    1. *Herbal Medicine (Sanjeevani)*: Restores 35 HP to Ranabaali.
+    2. *Chilli Powder Smoke (Mirapakaya)*: Blinds and stuns all nearby enemies for 4 seconds.
+    3. *War Horn (Dappu Ghosha)*: Grants immediate 35% Fury boost.
+- **Ranavatharam (Fury Mode)**:
+  - Triggered with `[F]`, `[I]`, or `[Q]` (or `[FURY]` button) when the Fury meter reaches 100%.
+  - Increases speed by 30%, coats machetes in raging fire, and triggers fullscreen cinematic cut-ins with screen-clearing slash shockwaves.
+
+---
+
+## 6. Procedural Audio Engine
+- **War Horns (Kombu)**: Synthesized Bhairav / D minor war raga.
+- **Percussion (Dappu / Thappeta)**: Dynamic syncopated folk rhythms accelerating during high combat tension and Fury mode.
+- **Vocal Battle Cries**: Real audio clips for Vijay Deverakonda's roar, Jayamma's war calls, and Sir Theodore Hector's imperial commands.
+- **Custom Jukebox**: Built-in support to upload any MP3 file (`📁 LOAD MP3` button) to play alongside procedural combat sound effects.
+
+---
+
+## 7. Responsiveness & Deployment
+- Full 16:9 widescreen cinematic scaling across mobile phones, tablets (iPads, Android tablets), and desktop monitors.
+- Landscape orientation lock overlay prompting mobile portrait users to rotate for optimal widescreen combat.
+- Hosted on Vercel Edge Network with Vercel Web Analytics and Speed Insights integration.
